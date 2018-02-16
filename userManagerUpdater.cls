@@ -1,6 +1,7 @@
 /**
  * Run this script in an Execute Anonymous Window to update a user record with
- * a new Manager
+ * a new Manager.  This won't be accurate if the reports to has changed from
+ * old to new
  */
 
  // Samuel Nix Id = '20947'
@@ -11,7 +12,7 @@ String newManagerEmployeeNumber = '20947';
 String oldManagerEmployeeNumber = '15034';
 Integer expectedUserRecords = 8;
 
-// Change to true to run update 
+// Change to true to run update
 Boolean toUpdate = false;
 
 List<Contact> contacts = new List<Contact>(
