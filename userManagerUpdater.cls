@@ -3,11 +3,15 @@
  * a new Manager
  */
 
- // Samuel Nix Id = 005A00000074Gi1IAE
- // Nicole Mogannam Id = 005A0000001BavhIAC
+ // Samuel Nix Id = '20947'
+ // Nicole Mogannam Employee Number = '15034'
 
-String newManagerName = 'Samuel Nix';
-String oldManagerName = 'Nicole Mogannam';
+// Magic variables
+String newManagerEmployeeNumber = '20947';
+String oldManagerEmployeeNumber = '15034';
+Integer expectedUserRecords = 8;
+
+// Change to true to run update 
 Boolean toUpdate = false;
 
 List<Contact> contacts = new List<Contact>(
@@ -18,8 +22,8 @@ List<Contact> contacts = new List<Contact>(
       FROM Contact
       WHERE Employment_Status__c = 'Active'
         AND Salesforce_User__c != null
-        AND ReportsTo.Name = :oldManagerName
-        AND Name != :newManagerName
+        AND ReportsTo.Employee_Number__c = :oldManagerEmployeeNumber
+        AND Employee_Number__c != :newManagerEmployeeNumber
     ]
   );
 
@@ -31,16 +35,14 @@ List<Contact> newManager = new List<Contact>(
     SELECT Id,
     Salesforce_User__c
     FROM Contact
-    WHERE Name = :newManagerName
+    WHERE Employee_Number__c = :newManagerEmployeeNumber
   ]
 );
-
-// TODO change name to employee number.
 
 ID newManagerUserId = newManager[0].Salesforce_User__c;
 
 System.debug('contacts: ' + contacts.size());
-System.assertEquals(8, contacts.size());
+System.assertEquals(expectedUserRecords, contacts.size());
 
 List<User> usersFromContact = new List<User>();
 
