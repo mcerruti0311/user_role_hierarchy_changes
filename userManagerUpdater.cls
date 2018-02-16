@@ -47,7 +47,8 @@ System.assertEquals(expectedUserRecords, contacts.size());
 
 List<User> usersFromContact = new List<User>();
 
-// Use ID In List
+// Use ID In List; can't be done because the field isn't the contact Id field.
+// The Id field belongs to the Salesforce_User__c
 
 for (Contact c : contacts) {
   usersFromContact.add(
